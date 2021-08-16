@@ -1,0 +1,2 @@
+class CoverPara < ApplicationRecord
+end

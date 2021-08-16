@@ -1,0 +1,2 @@
+class NavTab < ApplicationRecord
+end
