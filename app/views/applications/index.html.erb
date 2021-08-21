@@ -1,0 +1,9 @@
+<h1>Applications</h1>
+
+<% @applications.each do |app| %>
+  <div>
+    <h2><%= app.job_title %> </h2>
+    <h3><%= app.company_name %> </h3>
+  </div>
+  <div class="border border-black h-5 w-5"></div>
+<% end %>
