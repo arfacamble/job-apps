@@ -4,5 +4,6 @@ class ApplicationsController < ApplicationController
   end
 
   def edit
+    @application = Application.includes(:competencies, :cover_paras, :values).find(params[:id])
   end
 end

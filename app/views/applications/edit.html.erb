@@ -1,2 +1,26 @@
-<h1>Applications#edit</h1>
-<p>Find me in app/views/applications/edit.html.erb</p>
+<div class="flex justify-center">
+  <div class="w-11/12 md:w-3/4 pt-4">
+    <h1 class="text-center text-2xl">Application for <%= @application.job_title + ' at ' + @application.company_name %></h1>
+    <ul class="flex justify-evenly border border-gray my-4 p-2 rounded-md">
+      <li class="p-2 rounded-md border border-black" id="cover-tab">Cover</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="values-tab">Values</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="experience-tab">Experience</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="projects-tab">Projects</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="competencies-tab">Competencies</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="education-tab">Education</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="hobbies-tab">Hobbies</li>
+    </ul>
+    <div id="cover-content">cover</div>
+    <div id="values-content" class="hidden">values</div>
+    <div id="experience-content" class="hidden">experience</div>
+    <div id="projects-content" class="hidden">projects</div>
+    <div id="competencies-content" class="hidden">competencies</div>
+    <div id="education-content" class="hidden">education</div>
+    <div id="hobbies-content" class="hidden">hobbies</div>
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('li')
+  console.log(tabs)
+</script>
