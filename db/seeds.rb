@@ -7,6 +7,8 @@ Competency.destroy_all
 CoverPara.destroy_all
 
 master_app = Application.new(
+  string_id: 'google',
+  passkey: 'google',
   job_title: 'Full Stack Developer',
   company_name: 'Google',
   logo_url: seed_data['logoUrl'],

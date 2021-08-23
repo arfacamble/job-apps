@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_21_173356) do
+ActiveRecord::Schema.define(version: 2021_08_23_094517) do
 
   create_table "app_competencies", force: :cascade do |t|
     t.integer "application_id", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_08_21_173356) do
     t.string "font_link"
     t.string "logo_height_classes"
     t.string "passkey"
+    t.string "string_id"
   end
 
   create_table "bulletpoints", force: :cascade do |t|
