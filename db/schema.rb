@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_08_23_094517) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "app_competencies", force: :cascade do |t|
-    t.integer "application_id", null: false
-    t.integer "competency_id", null: false
+    t.bigint "application_id", null: false
+    t.bigint "competency_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["application_id"], name: "index_app_competencies_on_application_id"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
   end
 
   create_table "app_cover_paras", force: :cascade do |t|
-    t.integer "application_id", null: false
-    t.integer "cover_para_id", null: false
+    t.bigint "application_id", null: false
+    t.bigint "cover_para_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["application_id"], name: "index_app_cover_paras_on_application_id"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
   end
 
   create_table "app_values", force: :cascade do |t|
-    t.integer "application_id", null: false
-    t.integer "value_id", null: false
+    t.bigint "application_id", null: false
+    t.bigint "value_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["application_id"], name: "index_app_values_on_application_id"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
   create_table "bulletpoints", force: :cascade do |t|
     t.string "text"
     t.string "card_type"
-    t.integer "card_id"
+    t.bigint "card_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["card_type", "card_id"], name: "index_bulletpoints_on_card"
@@ -129,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
   create_table "quotes", force: :cascade do |t|
     t.string "author"
     t.string "text"
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["job_id"], name: "index_quotes_on_job_id"
@@ -159,7 +162,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
   add_foreign_key "app_competencies", "competencies"
   add_foreign_key "app_cover_paras", "applications"
   add_foreign_key "app_cover_paras", "cover_paras"
+  add_foreign_key "app_values", "\"values\"", column: "value_id"
   add_foreign_key "app_values", "applications"
-  add_foreign_key "app_values", "values"
   add_foreign_key "quotes", "jobs"
 end
