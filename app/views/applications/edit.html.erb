@@ -2,7 +2,7 @@
   <div class="w-11/12 md:w-3/4 pt-4">
     <h1 class="text-center text-2xl">Application for <%= @application.job_title + ' at ' + @application.company_name %></h1>
     <ul class="flex justify-evenly border border-gray my-4 p-2 rounded-md">
-      <li class="p-2 rounded-md border border-black" id="cover-tab">Cover</li>
+      <li class="p-2 rounded-md border border-black cursor-default" id="cover-tab">Cover</li>
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="values-tab">Values</li>
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="experience-tab">Experience</li>
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="projects-tab">Projects</li>
@@ -21,6 +21,28 @@
 </div>
 
 <script>
+  const toggleHidden = tab => tab.classList.toggle('hidden')
+  const toggleButtonClasses = (btn) => {
+    btn.classList.toggle('border-black')
+    btn.classList.toggle('border-gray')
+    btn.classList.toggle('cursor-pointer')
+    btn.classList.toggle('cursor-default')
+    btn.classList.toggle('hover:shadow')
+  }
+  const getContentDiv = (tabId) => {
+    const divId = tabId.split('-')[0] + '-content'
+    return document.getElementById(divId)
+  }
   const tabs = document.querySelectorAll('li')
-  console.log(tabs)
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      const activeTab = Array.from(tabs).filter(tab => tab.classList.contains('border-black'))[0]
+      toggleButtonClasses(activeTab)
+      toggleButtonClasses(e.currentTarget)
+      const divToReveal = getContentDiv(e.currentTarget.id)
+      const divToHide = getContentDiv(activeTab.id)
+      toggleHidden(divToHide)
+      toggleHidden(divToReveal)
+    })
+  })
 </script>

@@ -3,6 +3,19 @@ class ApplicationsController < ApplicationController
     @applications = Application.all
   end
 
+  def new
+    @application = Application.new
+  end
+
+  def create
+    @application = Application.new(application_params)
+    if @application.save
+      redirect_to edit_application_path(@application)
+    else
+      render :new
+    end
+  end
+
   def edit
     @application = Application.includes(:competencies, :cover_paras, :values).find(params[:id])
   end
@@ -74,5 +87,11 @@ class ApplicationsController < ApplicationController
     else
       p '-~--~--~--~----FAIL----~---~---~---~--'
     end
+  end
+
+  private
+
+  def application_params
+    params.require(:application).permit(:job_title, :company_name, :logo_url, :primary_color, :secondary_color, :background_color, :headers_font, :body_font, :font_link, :string_id, :passkey)
   end
 end
