@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   after_filter :cors
 
   def cors
-    response.headers['Access-Control-Allow-Origin'] == '*'
+    response.headers['Access-Control-Allow-Origin'] = '*'
   end
 end
