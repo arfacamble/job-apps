@@ -1,4 +1,6 @@
 class ApplicationsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
+
   def index
     @applications = Application.all
   end
@@ -85,7 +87,9 @@ class ApplicationsController < ApplicationController
         values: values
       }
     else
-      p '-~--~--~--~----FAIL----~---~---~---~--'
+      render json: {
+        failure: 'company name and passkey fail to match'
+      }
     end
   end
 
