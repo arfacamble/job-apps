@@ -40,10 +40,12 @@ seed_data['competencies'].values.each do |comp|
   AppCompetency.create!(application: master_app, competency: new_comp)
 end
 
+order = 1
 seed_data['cover'].each do |para|
   new_para = CoverPara.new(text: para)
   new_para.save!
-  AppCoverPara.create!(application: master_app, cover_para: new_para)
+  AppCoverPara.create!(application: master_app, cover_para: new_para, oder: order)
+  order += 1
 end
 
 NavTab.destroy_all

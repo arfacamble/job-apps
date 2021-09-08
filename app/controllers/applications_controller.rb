@@ -20,6 +20,15 @@ class ApplicationsController < ApplicationController
 
   def edit
     @application = Application.includes(:competencies, :cover_paras, :values).find(params[:id])
+    @all_cover_paras = CoverPara.all
+    @other_values = Value.all.reject { |val| @application.values.include? val }
+    @value = Value.new
+  end
+
+  def update
+    @application = Application.find(params[:id])
+    @application.update(application_params)
+    redirect_to edit_application_path(@application)
   end
 
   def show

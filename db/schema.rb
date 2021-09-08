@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_094517) do
+ActiveRecord::Schema.define(version: 2021_09_08_173851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_094517) do
     t.bigint "cover_para_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order"
     t.index ["application_id"], name: "index_app_cover_paras_on_application_id"
     t.index ["cover_para_id"], name: "index_app_cover_paras_on_cover_para_id"
   end

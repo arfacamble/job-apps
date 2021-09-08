@@ -1,0 +1,49 @@
+<%= form_for application, html: { class: 'flex flex-col' } do |f| %>
+  <div class="flex flex-wrap justify-around">
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :job_title, class: 'block' %>
+      <%= f.text_field :job_title, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :company_name, class: 'block' %>
+      <%= f.text_field :company_name, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :logo_url, class: 'block' %>
+      <%= f.text_field :logo_url, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :primary_color, class: 'block' %>
+      <%= f.text_field :primary_color, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :secondary_color, class: 'block' %>
+      <%= f.text_field :secondary_color, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :background_color, class: 'block' %>
+      <%= f.text_field :background_color, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :headers_font, class: 'block' %>
+      <%= f.text_field :headers_font, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :body_font, class: 'block' %>
+      <%= f.text_field :body_font, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :font_link, class: 'block' %>
+      <%= f.text_field :font_link, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :string_id, 'String ID', class: 'block' %>
+      <%= f.text_field :string_id, class: 'block w-full' %>
+    </div>
+    <div class="w-1/4 mx-2 my-2">
+      <%= f.label :passkey, class: 'block' %>
+      <%= f.text_field :passkey, class: 'block w-full' %>
+    </div>
+  </div>
+  <%= f.submit class: 'py-3 px-6 mx-3 text-white rounded-lg bg-purple-700 hover:bg-purple-900 shadow-lg self-end' %>
+<% end %>

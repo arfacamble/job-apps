@@ -2,21 +2,74 @@
   <div class="w-11/12 md:w-3/4 pt-4">
     <h1 class="text-center text-2xl">Application for <%= @application.job_title + ' at ' + @application.company_name %></h1>
     <ul class="flex justify-evenly border border-gray my-4 p-2 rounded-md">
-      <li class="p-2 rounded-md border border-black cursor-default" id="cover-tab">Cover</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="values-tab">Values</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="experience-tab">Experience</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="projects-tab">Projects</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="general-tab">General</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="cover-tab">Cover</li>
+      <li class="p-2 rounded-md border border-black cursor-default" id="values-tab">Values</li>
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="competencies-tab">Competencies</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="education-tab">Education</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="hobbies-tab">Hobbies</li>
     </ul>
-    <div id="cover-content">cover</div>
-    <div id="values-content" class="hidden">values</div>
-    <div id="experience-content" class="hidden">experience</div>
-    <div id="projects-content" class="hidden">projects</div>
+    <div id="general-content" class="hidden">
+      <%= render 'shared/basic_details_form', application: @application %>
+    </div>
+    <div id="cover-content" class="hidden">
+      <div class="flex">
+        <div class="w-7/12">
+          <% if @application.cover_paras.empty? %>
+            <%= form_tag application_cover_paras_path(@application), class: "flex flex-col items-center" do %>
+              <%= text_area_tag 1, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= text_area_tag 2, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= text_area_tag 3, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= text_area_tag 4, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= text_area_tag 5, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= text_area_tag 6, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= submit_tag 'Save', class: "w-28 py-1 text-white rounded-lg bg-blue-700 hover:bg-purple-900 shadow-lg" %>
+            <% end %>
+          <% else %>
+            <%= form_tag application_cover_paras_path(@application), class: "flex flex-col items-center" do %>
+              <% @application.app_cover_paras.each do |app_para| %>
+                <div class="flex items-center w-full">
+                  <%= text_area_tag app_para.order, app_para.cover_para.text, class: 'border rounded-md my-1 text-sm p-1 flex-grow' %>
+                  <%= link_to 'x', application_cover_para_path(@application, app_para), method: :delete, class: "w-6 h-6 text-center bg-red-700 text-white rounded-full" %>
+                </div>
+              <% end %>
+              <%= text_area_tag @application.cover_paras.count + 1, '', class: 'border rounded-md my-2 text-sm p-1 w-full' %>
+              <%= submit_tag 'Save', class: "w-28 py-1 text-white rounded-lg bg-blue-700 hover:bg-purple-900 shadow-lg" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="w-5/12">
+          <% @all_cover_paras.each do |para| %>
+            <p class="m-2 p-1 border border-gray rounded-md text-sm">
+              <%= para.text %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="values-content" class="flex flex-col items-center">
+      <%= form_with model: @value, url: create_new_value_path(@application), method: :post, class: "flex items-center" do |f| %>
+        <div class="flex flex-col w-80">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "border rounded-md m-2" %>
+          <%= f.label :image_url %>
+          <%= f.text_field :image_url, class: "border rounded-md m-2" %>
+        </div>
+        <%= f.text_area :text, class: "border rounded-md m-2 w-96 h-36" %>
+        <%= f.submit 'Create', class: 'bg-indigo-400 hover:bg-indigo-600 cursor-pointer text-white h-12 w-24 mx-2 rounded-md' %>
+      <% end %>
+      <div class="flex">
+        <div class="w-1/2 mr-2">
+          <% @application.values.each do |val| %>
+            <%= render 'shared/value_card', value: val, app: @application, now_in: true %>
+          <% end %>
+        </div>
+        <div class="w-1/2">
+          <% @other_values.each do |val| %>
+            <%= render 'shared/value_card', value: val, app: @application, now_in: false %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <div id="competencies-content" class="hidden">competencies</div>
-    <div id="education-content" class="hidden">education</div>
-    <div id="hobbies-content" class="hidden">hobbies</div>
   </div>
 </div>
 
