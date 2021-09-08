@@ -44,7 +44,7 @@ class ApplicationsController < ApplicationController
         headersFont: @application.headers_font,
         bodyFont: @application.body_font,
         fontLink: @application.font_link,
-        navTabs: nav_tabs,
+        # navTabs: nav_tabs,
         cover: @application.cover_paras,
         experience: jobs,
         education: education,
