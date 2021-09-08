@@ -26,7 +26,7 @@ class ApplicationsController < ApplicationController
     string_id = params[:id].downcase.gsub(/[^a-z]/, '')
     @application = Application.includes(:competencies, :cover_paras, :values).find_by_string_id(string_id)
     if @application&.passkey == params[:key]
-      nav_tabs = NavTab.all.map { |nav| { id: nav.title.downcase, title: nav.title, iconName: nav.icon_name }}
+      # nav_tabs = NavTab.all.map { |nav| { id: nav.title.downcase, title: nav.title, iconName: nav.icon_name }}
       jobs = format_jobs
       education = format_education
       hobbies = format_hobbies
