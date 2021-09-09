@@ -78,7 +78,7 @@ class ApplicationsController < ApplicationController
   end
 
   def format_jobs
-    Job.includes(:quotes, :bulletpoints).all.map do |job|
+    Job.includes(:quotes, :bulletpoints).all.order(start_date: :desc).map do |job|
       {
         id: job.string_id,
         institution: job.institution,
