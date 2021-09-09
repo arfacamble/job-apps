@@ -44,7 +44,7 @@ order = 1
 seed_data['cover'].each do |para|
   new_para = CoverPara.new(text: para)
   new_para.save!
-  AppCoverPara.create!(application: master_app, cover_para: new_para, oder: order)
+  AppCoverPara.create!(application: master_app, cover_para: new_para, order: order)
   order += 1
 end
 
@@ -123,3 +123,43 @@ seed_data['projects'].values.each do |project|
     Bulletpoint.create!(text: point, card: new_project)
   end
 end
+
+application_backend = Project.new(
+  string_id: 'applicationBackend',
+  url: 'https://job-application-api.herokuapp.com/',
+  title: 'Application Preparation Backend',
+  image_url: 'application-backend.png'
+)
+application_backend.save!
+Bulletpoint.create!(
+  text: 'interface to streamline preparation of applications',
+  card: application_backend
+)
+Bulletpoint.create!(
+  text: 'API endpoint to expose applications to VueJS frontend',
+  card: application_backend
+)
+Bulletpoint.create!(
+  text: 'Rails, devise, tailwind, sqlite',
+  card: application_backend
+)
+
+application_frontend = Project.new(
+  string_id: 'applicationFrontend',
+  url: '/',
+  title: 'SPA Job Application',
+  image_url: 'Vue-SPA-applications.png'
+)
+application_frontend.save!
+Bulletpoint.create!(
+  text: 'check out the smoothly expanding cards in the experience tab!',
+  card: application_frontend
+)
+Bulletpoint.create!(
+  text: 'VueJS frontend that retrieves application data from Rails backend given credentials',
+  card: application_frontend
+)
+Bulletpoint.create!(
+  text: 'tailwind variables for colours and fonts set through CSS variables after compilation to allow personalised styling',
+  card: application_frontend
+)
