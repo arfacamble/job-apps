@@ -23,6 +23,8 @@ class ApplicationsController < ApplicationController
     @all_cover_paras = CoverPara.all
     @other_values = Value.all.reject { |val| @application.values.include? val }
     @value = Value.new
+    @other_competencies = Competency.all.reject { |comp| @application.competencies.include? comp }
+    @competency = Competency.new
   end
 
   def update

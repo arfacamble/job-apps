@@ -4,8 +4,8 @@
     <ul class="flex justify-evenly border border-gray my-4 p-2 rounded-md">
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="general-tab">General</li>
       <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="cover-tab">Cover</li>
-      <li class="p-2 rounded-md border border-black cursor-default" id="values-tab">Values</li>
-      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="competencies-tab">Competencies</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="values-tab">Values</li>
+      <li class="p-2 rounded-md border border-black cursor-default" id="competencies-tab">Competencies</li>
     </ul>
     <div id="general-content" class="hidden">
       <%= render 'shared/basic_details_form', application: @application %>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div id="values-content" class="flex flex-col items-center">
+    <div id="values-content" class="hidden">
       <%= form_with model: @value, url: create_new_value_path(@application), method: :post, class: "flex items-center" do |f| %>
         <div class="flex flex-col w-80">
           <%= f.label :title %>
@@ -69,7 +69,30 @@
         </div>
       </div>
     </div>
-    <div id="competencies-content" class="hidden">competencies</div>
+    <div id="competencies-content" class="flex flex-col items-center">
+      <%= form_with model: @competency, url: create_new_competency_path(@application), method: :post, class: "flex items-center" do |f| %>
+        <div class="flex flex-col w-80">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "border rounded-md m-2" %>
+          <%= f.label :image_url %>
+          <%= f.text_field :image_url, class: "border rounded-md m-2" %>
+        </div>
+        <%= f.text_area :text, class: "border rounded-md m-2 w-96 h-36" %>
+        <%= f.submit 'Create', class: 'bg-indigo-400 hover:bg-indigo-600 cursor-pointer text-white h-12 w-24 mx-2 rounded-md' %>
+      <% end %>
+      <div class="flex">
+        <div class="w-1/2 mr-2">
+          <% @application.competencies.each do |comp| %>
+            <%= render 'shared/competency_card', competency: comp, app: @application, now_in: true %>
+          <% end %>
+        </div>
+        <div class="w-1/2">
+          <% @other_competencies.each do |comp| %>
+            <%= render 'shared/competency_card', competency: comp, app: @application, now_in: false %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
