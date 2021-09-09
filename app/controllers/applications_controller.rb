@@ -20,7 +20,7 @@ class ApplicationsController < ApplicationController
 
   def edit
     @application = Application.includes(:competencies, :cover_paras, :values).find(params[:id])
-    @all_cover_paras = CoverPara.all
+    @all_cover_paras = CoverPara.all.order(id: :asc)
     @other_values = Value.all.reject { |val| @application.values.include? val }
     @value = Value.new
     @other_competencies = Competency.all.reject { |comp| @application.competencies.include? comp }
