@@ -1,0 +1,61 @@
+<div class="flex flex-col p-12">
+  <%= form_for(@job) do |f| %>
+    <div class="flex justify-center">
+      <div class="p-2">
+        <%= f.label :string_id, 'String ID' %>
+        <%= f.text_field :string_id, class: "rounded-lg border-gray-500" %>
+      </div>
+      <div class="p-2">
+        <%= f.label :institution %>
+        <%= f.text_field :institution, class: "rounded-lg border-gray-500" %>
+      </div>
+      <div class="p-2">
+        <%= f.label :job_title %>
+        <%= f.text_field :job_title, class: "rounded-lg border-gray-500 w-96" %>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <div class="p-2">
+        <%= f.label :image_url %>
+        <%= f.text_field :image_url, class: "rounded-lg border-gray-500" %>
+      </div>
+      <div class="p-2">
+        <%= f.label :date_range %>
+        <%= f.text_field :date_range, class: "rounded-lg border-gray-500" %>
+      </div>
+      <div class="p-2">
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date, class: "rounded-lg border-gray-500" %>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <div class="p-2 w-2/3">
+        <%= f.label :text %>
+        <%= f.text_area :text, class: "rounded-lg border-gray-500 w-full h-28" %>
+      </div>
+    </div>
+    <div class="flex justify-end">
+      <%= f.submit class: 'py-3 px-6 mr-48 text-white rounded-lg bg-purple-700 hover:bg-purple-900 shadow-lg cursor-pointer' %>
+    </div>
+  <% end %>
+  <h4 class="ml-48 text-lg my-2">Bulletpoints:</h4>
+  <% @job.bulletpoints.each do |point| %>
+    <div class="flex justify-center my-1">
+      <div class="w-1/2">
+        <%= form_for(point, url: update_bulletpoint_path(@job, point), html: { class: 'flex items-center' }) do |f| %>
+          <%= f.text_area :text, class: "flex-grow text-sm rounded-md" %>
+          <%= f.submit 'Update', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
+        <% end %>
+      </div>
+      <div class="w-1/5 flex items-center">
+        <%= link_to 'Delete', bulletpoint_path(point), method: :delete, class: 'py-1 px-2 mx-2 text-white rounded-md bg-red-700 hover:bg-red-600 shadow-lg cursor-pointer' %>
+      </div>
+    </div>
+  <% end %>
+  <%= form_for(@bulletpoint, html: { class: 'flex items-center my-1 w-1/2 self-center' }) do |f| %>
+    <%= f.text_area :text, class: "flex-grow text-sm rounded-md" %>
+    <%= f.hidden_field :card_type, { value: @job.class } %>
+    <%= f.hidden_field :card_id, { value: @job.id } %>
+    <%= f.submit 'Create', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
+  <% end %>
+</div>

@@ -1,0 +1,43 @@
+<div class="flex justify-center">
+  <div class="w-11/12 md:w-3/4 pt-4">
+    <ul class="flex justify-evenly border border-gray my-4 p-2 rounded-md">
+      <li class="p-2 rounded-md border border-black cursor-default" id="experience-tab">Experience</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="education-tab">Education</li>
+      <li class="p-2 rounded-md border border-gray cursor-pointer hover:shadow" id="projects-tab">Projects</li>
+    </ul>
+    <div id="experience-content" class="flex flex-col items-center">
+      <% @jobs.each do |job| %>
+        <%= render 'shared/job_card', job: job %>
+      <% end %>
+    </div>
+    <div id="education-content" class="hidden">edu</div>
+    <div id="projects-content" class="hidden">projecs</div>
+  </div>
+</div>
+
+<script>
+  const toggleHidden = tab => tab.classList.toggle('hidden')
+  const toggleButtonClasses = (btn) => {
+    btn.classList.toggle('border-black')
+    btn.classList.toggle('border-gray')
+    btn.classList.toggle('cursor-pointer')
+    btn.classList.toggle('cursor-default')
+    btn.classList.toggle('hover:shadow')
+  }
+  const getContentDiv = (tabId) => {
+    const divId = tabId.split('-')[0] + '-content'
+    return document.getElementById(divId)
+  }
+  const tabs = document.querySelectorAll('li')
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      const activeTab = Array.from(tabs).filter(tab => tab.classList.contains('border-black'))[0]
+      toggleButtonClasses(activeTab)
+      toggleButtonClasses(e.currentTarget)
+      const divToReveal = getContentDiv(e.currentTarget.id)
+      const divToHide = getContentDiv(activeTab.id)
+      toggleHidden(divToHide)
+      toggleHidden(divToReveal)
+    })
+  })
+</script>

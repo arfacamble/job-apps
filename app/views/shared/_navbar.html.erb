@@ -1,6 +1,7 @@
 <div class="h-16 bg-blue-400 flex justify-center items-center">
   <%= link_to 'Applications', applications_path, class: 'py-3 px-6 mx-3 text-white rounded-lg bg-purple-700 hover:bg-purple-900 shadow-lg' %>
   <%= link_to 'New Application', new_application_path, class: 'py-3 px-6 mx-3 text-white rounded-lg bg-purple-700 hover:bg-purple-900 shadow-lg' %>
+  <%= link_to 'Edit Constants', jobs_path, class: 'py-3 px-6 mx-3 text-white rounded-lg bg-purple-700 hover:bg-purple-900 shadow-lg' %>
   <% if user_signed_in? %>
     <%= link_to 'Sign out', destroy_user_session_path, class: 'py-3 px-6 mx-3 text-white rounded-lg bg-red-700 hover:bg-purple-900 shadow-lg' %>
   <% else %>

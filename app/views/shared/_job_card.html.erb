@@ -1,0 +1,25 @@
+<div class="my-2 border border-blue-900 border-opacity-20 rounded-md p-2 w-2/3 relative">
+  <%= link_to 'Edit', edit_job_path(job), class: 'absolute top-16 -right-20 bg-green-500 hover:bg-green-700 border-2 border-pink-700 hover:border-pink-500 text-white py-2 px-4 rounded-md' %>
+  <div class="flex">
+    <img src=<%= job.image_url %> alt=<%= job.image_url %> class="h-20 w-20 rounded-md">
+    <div class="flex-grow pl-2 flex flex-col justify-evenly">
+      <h4 class="font-headers font-light text-blue-900 text-base sm:text-lg md:text-2xl"><%= job.job_title %></h4>
+      <h4 class="font-headers font-bold text-blue-900 text-sm sm:text-base md:text-lg"><%= job.institution %></h4>
+      <h4 class="font-headers italic text-blue-900 text-xs sm:text-sm md:text-base"><%= job.date_range %></h4>
+    </div>
+  </div>
+  <p class="font-body text-blue-900 mt-2"><%= job.text %></p>
+  <div>
+    <ul class="list-disc pl-6">
+      <% job.bulletpoints.each do |bp| %>
+        <li class="font-body text-blue-900 font-light text-sm"><%= bp.text %></li>
+      <% end %>
+    </ul>
+    <% job.quotes.each do |q| %>
+      <div class="my-1 text-sm mx-2">
+        <p class="font-body text-blue-900 italic">"<%= q.text %>"</p>
+        <p class="font-body text-blue-900 font-bold text-right mr-6"><%= q.author %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
