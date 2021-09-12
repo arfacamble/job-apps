@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     resources :values, only: [ :create, :destroy ]
     resources :competencies, only: [ :create, :destroy ]
   end
-  resources :jobs, only: [ :index, :edit, :update ]
-  resources :bulletpoints, only: [ :destroy, :create ]
-  patch '/jobs/:card_id/bulletpoints/:id', to: 'bulletpoints#update', as: :update_bulletpoint
+  resources :jobs, only: [ :index, :edit, :update ] do
+    resources :bulletpoints, only: :create
+    resources :quotes, only: :create
+  end
+  resources :bulletpoints, only: [ :destroy, :update ]
+  resources :quotes, only: [ :destroy, :update ]
   post '/applications/:application_id/values/create', to: 'values#create_new', as: :create_new_value
   post '/applications/:application_id/competencies/create', to: 'competencies#create_new', as: :create_new_competency
 end

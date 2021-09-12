@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.includes(:quotes, :bulletpoints).find(params[:id])
     @bulletpoint = Bulletpoint.new
+    @quote = Quote.new
   end
 
   def update

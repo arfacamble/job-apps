@@ -2,12 +2,12 @@ class CoverParasController < ApplicationController
   def create
     @application = Application.find params[:application_id]
     paras = [
-      { order: 1, text: params['1']},
-      { order: 2, text: params['2']},
-      { order: 3, text: params['3']},
-      { order: 4, text: params['4']},
-      { order: 5, text: params['5']},
-      { order: 6, text: params['6']},
+      { order: 1, text: params['1'].strip},
+      { order: 2, text: params['2'].strip},
+      { order: 3, text: params['3'].strip},
+      { order: 4, text: params['4'].strip},
+      { order: 5, text: params['5'].strip},
+      { order: 6, text: params['6'].strip},
     ]
     paras.reject! { |p| p[:text].nil? || p[:text].empty? }
     paras.each do |para|

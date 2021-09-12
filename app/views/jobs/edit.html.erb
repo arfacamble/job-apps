@@ -42,7 +42,7 @@
   <% @job.bulletpoints.each do |point| %>
     <div class="flex justify-center my-1">
       <div class="w-1/2">
-        <%= form_for(point, url: update_bulletpoint_path(@job, point), html: { class: 'flex items-center' }) do |f| %>
+        <%= form_for(point, html: { method: :patch, class: 'flex items-center' }) do |f| %>
           <%= f.text_area :text, class: "flex-grow text-sm rounded-md" %>
           <%= f.submit 'Update', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
         <% end %>
@@ -52,10 +52,34 @@
       </div>
     </div>
   <% end %>
-  <%= form_for(@bulletpoint, html: { class: 'flex items-center my-1 w-1/2 self-center' }) do |f| %>
+  <%= form_for(@bulletpoint, url: job_bulletpoints_path(@job), html: { class: 'flex items-center my-1 w-1/2 self-center' }) do |f| %>
     <%= f.text_area :text, class: "flex-grow text-sm rounded-md" %>
-    <%= f.hidden_field :card_type, { value: @job.class } %>
-    <%= f.hidden_field :card_id, { value: @job.id } %>
+    <%= f.submit 'Create', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
+  <% end %>
+  <h4 class="ml-48 text-lg my-2">Quotes:</h4>
+  <% @job.quotes.each do |quote| %>
+    <div class="flex justify-center my-1">
+      <div class="w-2/3">
+        <%= form_for(quote, html: { method: :patch, class: 'flex items-center' }) do |f| %>
+          <div class="flex flex-col">
+            <%= f.label :author %>
+            <%= f.text_field :author, class: "text-sm rounded-md mx-2" %>
+          </div>
+          <%= f.text_area :text, class: "flex-grow text-sm rounded-md mx-2 h-20" %>
+          <%= f.submit 'Update', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
+        <% end %>
+      </div>
+      <div class="w-1/5 flex items-center">
+        <%= link_to 'Delete', quote_path(quote), method: :delete, class: 'py-1 px-2 mx-2 text-white rounded-md bg-red-700 hover:bg-red-600 shadow-lg cursor-pointer' %>
+      </div>
+    </div>
+  <% end %>
+  <%= form_for(@quote, url: job_quotes_path(@job), html: { class: 'flex items-center my-1 w-1/2 self-center' }) do |f| %>
+    <div class="flex flex-col">
+      <%= f.label :author %>
+      <%= f.text_field :author, class: "text-sm rounded-md mx-2" %>
+    </div>
+    <%= f.text_area :text, class: "flex-grow text-sm rounded-md mx-2 h-20" %>
     <%= f.submit 'Create', class: 'py-1 px-2 mx-2 text-white rounded-md bg-green-700 hover:bg-green-600 shadow-lg cursor-pointer' %>
   <% end %>
 </div>
