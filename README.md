@@ -1,24 +1,6 @@
-# README
+A backend where I can prepare my job applications and expose them thorough an API for a VueJS frontend to render.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The site can be found at job-application-api.herokuapp.com however it is password-protected for my use only.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To see an example of the JSON API you can go to:
+http://job-application-api.herokuapp.com/applications/google?key=google
